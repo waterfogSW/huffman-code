@@ -1,6 +1,6 @@
 public class Node {
-    double  weight;
-    char    ch;
-    Node    lchild;
-    Node    rchild;
+    Integer weight;
+    String  ch;
+    Node    left;
+    Node    right;
 }
