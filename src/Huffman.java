@@ -65,7 +65,7 @@ public class Huffman {
     }
 
     public static void printCode(Node root, String s) {
-        if(root.left == null && root.right == null && root.ch != null) {
+        if(root.left == null && root.right == null && Character.isLetter(root.ch)) {
             System.out.println(root.ch + ":" + s);
             return;
         }
