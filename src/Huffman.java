@@ -2,19 +2,36 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.PriorityQueue;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Huffman {
     public static void main(String[] args) throws Exception {
-        String text;
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Input Text : ");
-        text = sc.nextLine();
-        sc.close();
+        Scanner sc_file = new Scanner(System.in);
+        System.out.print("Input file name : ");
+        String path = sc_file.nextLine();
+        String text = "";
+        try{
+            File file = new File(path);
+            String abs_path = file.getAbsolutePath();
+            System.out.println(abs_path);
+            file = new File(abs_path);
+            Scanner scan = new Scanner(file);
+            while(scan.hasNextLine()){
+                text += scan.nextLine();
+            }
+            scan.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("Error : no such file or directory" + path);
+            sc_file.close();
+            return;
+        }
+
+        sc_file.close();
         TreeMap<Character, Integer> map = new TreeMap<>();
         for (int i = 0; i < text.length(); i++) {
             Character c = text.charAt(i);
-            if(c == ' ') continue;
             Integer val = map.get(c);
             if(val != null) {
                 map.put(c,val + 1);
@@ -54,7 +71,7 @@ public class Huffman {
 
             Node f = new Node();
             f.weight = x.weight + y.weight;
-            f.ch = null;
+            f.ch = '-';
             f.left = x;
             f.right = y;
             root = f;
@@ -65,9 +82,11 @@ public class Huffman {
     }
 
     public static void printCode(Node root, String s) {
-        if(root.left == null && root.right == null && Character.isLetter(root.ch)) {
-            System.out.println(root.ch + ":" + s);
-            return;
+        if(root.left == null && root.right == null) {
+            if(Character.isLetter(root.ch) || root.ch == ' '){
+                System.out.println(root.ch + ":" + s);
+                return;
+            }
         }
         printCode(root.left, s + "0");
         printCode(root.right, s + "1");
