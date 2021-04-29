@@ -1,6 +1,6 @@
 public class Node {
-    Integer weight;
-    String  ch;
-    Node    left;
-    Node    right;
+    Integer     weight;
+    Character   ch;
+    Node        left;
+    Node        right;
 }

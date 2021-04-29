@@ -9,11 +9,12 @@ public class Huffman {
 
         Scanner sc = new Scanner(System.in);
         System.out.print("Input Text : ");
-        text = sc.next();
+        text = sc.nextLine();
         sc.close();
-        TreeMap<String, Integer> map = new TreeMap<>();
+        TreeMap<Character, Integer> map = new TreeMap<>();
         for (int i = 0; i < text.length(); i++) {
-            String c = String.valueOf(text.charAt(i));
+            Character c = text.charAt(i);
+            if(c == ' ') continue;
             Integer val = map.get(c);
             if(val != null) {
                 map.put(c,val + 1);
@@ -22,7 +23,7 @@ public class Huffman {
                 map.put(c,1);
             }
         }
-        String[] key_arr = map.keySet().toArray(new String[map.size()]);
+        Character[] key_arr = map.keySet().toArray(new Character[map.size()]);
         Integer[] value_arr = map.values().toArray(new Integer[map.size()]);
         System.out.println("Char : " + Arrays.toString(key_arr));
         System.out.println("Freq : " + Arrays.toString(value_arr));
@@ -53,7 +54,7 @@ public class Huffman {
 
             Node f = new Node();
             f.weight = x.weight + y.weight;
-            f.ch = "-";
+            f.ch = null;
             f.left = x;
             f.right = y;
             root = f;
@@ -64,7 +65,7 @@ public class Huffman {
     }
 
     public static void printCode(Node root, String s) {
-        if(root.left == null && root.right == null) {
+        if(root.left == null && root.right == null && root.ch != null) {
             System.out.println(root.ch + ":" + s);
             return;
         }
