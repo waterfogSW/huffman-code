@@ -1,1 +1,4 @@
-hi im john
+enter text below to create a Huffman Tree
+the following characters will be used to create the tree 
+consist of letters and space
+all other characters are ignored

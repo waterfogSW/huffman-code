@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.PriorityQueue;
@@ -42,8 +41,18 @@ public class Huffman {
         }
         Character[] key_arr = map.keySet().toArray(new Character[map.size()]);
         Integer[] value_arr = map.values().toArray(new Integer[map.size()]);
-        System.out.println("Char : " + Arrays.toString(key_arr));
-        System.out.println("Freq : " + Arrays.toString(value_arr));
+
+        System.out.print("Char : ");
+        for (int i = 0; i < key_arr.length; i++) {
+            System.out.print(String.format("%s ", key_arr[i]));
+        }
+        System.out.println();
+
+        System.out.print("Freq : ");
+        for (int i = 0; i < value_arr.length; i++) {
+            System.out.print(String.format("%s ", value_arr[i]));
+        }
+        System.out.println();
 
         int numOfchar = key_arr.length;
         PriorityQueue<Node> q
@@ -84,7 +93,7 @@ public class Huffman {
     public static void printCode(Node root, String s) {
         if(root.left == null && root.right == null) {
             if(Character.isLetter(root.ch) || root.ch == ' '){
-                System.out.println(root.ch + ":" + s);
+                System.out.println(root.ch + " : " + s);
                 return;
             }
         }
