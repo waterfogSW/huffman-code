@@ -54,9 +54,8 @@ public class Huffman {
         }
         System.out.println();
 
-        int numOfchar = key_arr.length;
         PriorityQueue<Node> q
-            = new PriorityQueue<Node>(numOfchar, new MyComparator());
+            = new PriorityQueue<Node>(key_arr.length, new MyComparator());
 
         for(int i = 0; i < key_arr.length; i++) {
             Node hn = new Node();
