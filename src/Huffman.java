@@ -1,44 +1,9 @@
-import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.PriorityQueue;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 public class Huffman {
     public static void main(String[] args) throws Exception {
-
-        Scanner sc_file = new Scanner(System.in);
-        System.out.print("Input file name : ");
-        String path = sc_file.nextLine();
-        String text = "";
-        try{
-            File file = new File(path);
-            String abs_path = file.getAbsolutePath();
-            System.out.println(abs_path);
-            file = new File(abs_path);
-            Scanner scan = new Scanner(file);
-            while(scan.hasNextLine()){
-                text += scan.nextLine();
-            }
-            scan.close();
-        }catch (FileNotFoundException e) {
-            System.out.println("Error : no such file or directory" + path);
-            sc_file.close();
-            return;
-        }
-
-        sc_file.close();
-        TreeMap<Character, Integer> map = new TreeMap<>();
-        for (int i = 0; i < text.length(); i++) {
-            Character c = text.charAt(i);
-            Integer val = map.get(c);
-            if(val != null) {
-                map.put(c,val + 1);
-            }
-            else {
-                map.put(c,1);
-            }
-        }
+        TreeMap<Character, Integer> map = Initialize.parseInput();
         Character[] key_arr = map.keySet().toArray(new Character[map.size()]);
         Integer[] value_arr = map.values().toArray(new Integer[map.size()]);
 
