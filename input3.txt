@@ -1,4 +1,4 @@
-enter text below to create a Huffman Tree
+enter the text to create a huffman tree
 the following characters will be used to create the tree 
-consist of letters and space
-all other characters are ignored
+it must be consist of only lowercase letters and spaces
+all other characters will be ignored
